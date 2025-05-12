@@ -1,0 +1,48 @@
+<div class="header bg-white pb-8 pt-5 pt-md-8">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <div class="card bg-white shadow" style="max-width: 800px; margin: 0 auto;">
+        <div class="card-header bg-transparent">
+          <h6 class="text-uppercase text-dark ls-1 mb-1">Edit Transaction</h6>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()">
+            <!-- Category Dropdown with Icons -->
+            <div class="form-group">
+              <label class="text-dark">Category</label>
+              <select class="form-control" [(ngModel)]="transaction.category" name="category" required>
+                <option *ngFor="let category of categories" [value]="category">
+                  <i [class]="getCategoryIcon(category)"></i> {{ category }}
+                </option>
+              </select>
+            </div>
+  
+            <!-- Amount Input -->
+            <div class="form-group">
+              <label class="text-dark">Amount (MAD)</label>
+              <input type="number" class="form-control" placeholder="Enter amount" [(ngModel)]="transaction.amount" name="amount" required>
+            </div>
+  
+            <!-- Date and Time Input -->
+            <div class="form-group">
+              <label class="text-dark">Date and Time</label>
+              <input type="datetime-local" class="form-control" [(ngModel)]="transaction.date_time" name="date_time" required>
+            </div>
+  
+            <!-- Type Dropdown -->
+            <div class="form-group">
+              <label class="text-dark">Type</label>
+              <select class="form-control" [(ngModel)]="transaction.type" name="type" (change)="updateTypeColor()" required>
+                <option value="Expense">Expense</option>
+                <option value="Income">Income</option>
+              </select>
+            </div>
+  
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary w-100" style="background-color: #018abe; border-color: #018abe;">
+              <i class="fas fa-save"></i> Update Transaction
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

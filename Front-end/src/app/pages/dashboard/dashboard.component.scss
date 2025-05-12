@@ -1,0 +1,159 @@
+/* Light gray background for the rectangles */
+.bg-light-gray {
+    background-color: #f8f9fa; /* Light gray color */
+  }
+  
+  /* Styling for the filter rectangles */
+  .filter-rectangle {
+    border: 1px solid #e9ecef; /* Light border */
+  }
+  
+  /* Styling for the links inside the rectangles */
+  .filter-rectangle a {
+    text-decoration: none; /* Remove underline */
+    color: #6c757d; /* Gray text color */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  /* Active state for Income, Expenses, Both, D, M, Y */
+  .filter-rectangle a.active {
+    font-weight: bold; /* Bold text for active state */
+    color: skyblue; /* Darker text for active state */
+  }
+  
+  /* Make the icons (up and down arrows) bold and colored when active */
+  .filter-rectangle a.active i.fa-arrow-up {
+    font-weight: bold; /* Bold icons for active state */
+    color: #28a745; /* Green color for Income icon */
+  }
+  
+  .filter-rectangle a.active i.fa-arrow-down {
+    font-weight: bold; /* Bold icons for active state */
+    color: #dc3545; /* Red color for Expenses icon */
+  }
+  
+  /* Ensure the rectangles and their contents stay in one line */
+  .d-flex {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Add spacing between the rectangles */
+  .mr-2 {
+    margin-right: 0.5rem;
+  }
+  
+  /* Add spacing between the items inside the rectangles */
+  .mx-2 {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  /* Add this to your dashboard.component.scss or global styles */
+#recent-transactions {
+  .card-body {
+    padding: 1rem; /* Adjust padding as needed */
+  }
+
+  .table-responsive {
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+  }
+
+  .table {
+    width: 100%; /* Ensure the table takes full width */
+    margin-bottom: 0; /* Remove default margin */
+    border-collapse: collapse; /* Ensure borders are collapsed */
+
+    th, td {
+      padding: 0.75rem; /* Add padding to table cells */
+      text-align: left; /* Align text to the left */
+      white-space: nowrap; /* Prevent text wrapping */
+    }
+
+    th {
+      font-weight: 600; /* Make headers bold */
+      background-color: #d6e8ee; /* Light gray background for headers */
+    }
+
+    td {
+      border-top: 1px solid #e9ecef; /* Add border between rows */
+    }
+
+    .btn {
+      margin: 0 0.25rem; /* Add spacing between buttons */
+    }
+  }
+
+  /* Hide Actions and Date and Time columns when collapsed */
+  &.collapsed {
+    .table th:nth-last-child(-n+2),
+    .table td:nth-last-child(-n+2) {
+      display: none;
+    }
+  }
+
+  /* Add this to your dashboard.component.scss or global styles */
+#spending-breakdown {
+  .card-body {
+    /* Adjust the size of the doughnut chart */
+    canvas#chart-pie {
+      width: 100% !important; /* Make the chart responsive */
+      height: auto !important;
+      max-width: 300px; /* Adjust the maximum width as needed */
+      margin: 0 auto; /* Center the chart */
+    }
+
+    /* Adjust the size of the inner text */
+    #pie-chart-text {
+      h2 {
+        font-size: 1.2rem !important; /* Increase the percentage font size */
+      }
+      p {
+        font-size: 1.1rem !important; /* Increase the category font size */
+      }
+    }
+  }
+}
+
+/* Custom styles for the red line in the bar chart */
+#chart-financial-activity {
+  .line {
+    z-index: 10; /* Ensure the line is on top */
+  }
+}
+
+
+
+
+/* dashboard.component.scss */
+
+.dark-theme {
+  /* Customize dashboard-specific dark mode styles */
+  .card {
+    background-color: #1e1e1e; /* Dark card background */
+    color: #ffffff;
+
+    .card-header {
+      background-color: #2c2c2c; /* Slightly lighter dark for card headers */
+    }
+  }
+
+  .table {
+    color: #ffffff; /* White text for tables */
+
+    th {
+      background-color: #2c2c2c; /* Dark background for table headers */
+    }
+
+    td {
+      border-color: #444; /* Darker border for table cells */
+    }
+  }
+
+  /* Customize graphs in dark mode */
+  .chartjs-render-monitor {
+    background-color: #1e1e1e; /* Dark background for graphs */
+    color: #ffffff;
+  }
+}
+}

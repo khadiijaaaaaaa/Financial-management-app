@@ -1,0 +1,94 @@
+<div class="header bg-white pb-8 pt-5 pt-md-8">
+  <div style="max-width: 1000px; margin: 0 auto;"> <!-- Centered and max-width -->
+    <div class="card bg-white shadow" style="max-width: 800px; margin: 0 auto;"> <!-- Centered and max-width -->
+      <div class="card-header bg-transparent">
+        <h4 class="text-uppercase text-dark ls-1 mb-1">Settings</h4>
+      </div>
+      <div class="card-body">
+        <!-- Modify Account Section -->
+        <div class="modify-account-section mb-5">
+          <h6 class="text-uppercase text-dark ls-1 mb-3">Modify Account</h6>
+          <form (ngSubmit)="onSubmit()">
+            <!-- Name -->
+            <div class="form-group">
+              <label class="text-dark">Name</label>
+              <input type="text" class="form-control" [(ngModel)]="user.name" name="name" required>
+            </div>
+
+            <!-- Email Address -->
+            <div class="form-group">
+              <label class="text-dark">Email Address</label>
+              <input type="email" class="form-control" [(ngModel)]="user.email" name="email" required>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+              <label class="text-dark">Password</label>
+              <input type="password" class="form-control" [(ngModel)]="user.password" name="password">
+            </div>
+
+            <!-- Profile Picture -->
+            <div class="form-group">
+              <label class="text-dark">Profile Picture</label>
+              <input type="file" class="form-control" (change)="onFileChange($event)" name="profile_picture">
+            </div>
+
+            <!-- Total Balance -->
+            <div class="form-group">
+              <label class="text-dark">Total Balance</label>
+              <input type="number" class="form-control" [(ngModel)]="user.totalBalance" name="totalBalance" required>
+            </div>
+
+            <!-- Gender -->
+            <div class="form-group">
+              <label class="text-dark">Gender</label>
+              <select class="form-control" [(ngModel)]="user.gender" name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+
+            <!-- Birthdate -->
+            <div class="form-group">
+              <label class="text-dark">Birthdate</label>
+              <input type="date" class="form-control" [(ngModel)]="user.birthdate" name="birthdate" required>
+            </div>
+
+            <!-- City -->
+            <div class="form-group">
+              <label class="text-dark">City</label>
+              <input type="text" class="form-control" [(ngModel)]="user.city" name="city" required>
+            </div>
+
+            <!-- Country -->
+            <div class="form-group">
+              <label class="text-dark">Country</label>
+              <input type="text" class="form-control" [(ngModel)]="user.country" name="country" required>
+            </div>
+
+            <!-- Save Changes Button -->
+            <button type="submit" class="btn w-100" style="background-color: #97cadb; border-color: #97cadb;">
+              <i class="fas fa-save"></i> Save Changes
+            </button>
+          </form>
+        </div>
+
+        <!-- Logout Section -->
+        <div class="logout-section mb-5">
+          <h6 class="text-uppercase text-dark ls-1 mb-3">Logout</h6>
+          <button class="btn w-100" (click)="logout()" style="background-color: #018abe; border-color: #018abe;">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
+
+        <!-- Delete Account Section -->
+        <div class="delete-account-section">
+          <h6 class="text-uppercase text-dark ls-1 mb-3">Delete Account</h6>
+          <button class="btn w-100" (click)="deleteAccount()" style="background-color: #02457a; border-color: #02457a; color: white;">
+            <i class="fas fa-trash"></i>Delete Account
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

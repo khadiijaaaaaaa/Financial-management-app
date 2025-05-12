@@ -1,0 +1,118 @@
+.header {
+  padding: 20px;
+
+  .container-fluid {
+    display: flex;
+    flex-direction: column; // Stack sections vertically
+    gap: 20px;
+
+    .questions-section {
+      width: 100%; // Full width for the questions section
+
+      .section-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #343a40;
+      }
+
+      .question-card {
+        background-color: #f8f9fa; // Light gray background
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: #e9ecef; // Slightly darker on hover
+        }
+
+        .question-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .question-text {
+            font-weight: bold;
+            color: #343a40; // Black text for questions
+          }
+
+          .toggle-icon {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #97cadb; // Blue color for the toggle icon
+          }
+        }
+
+        .answer {
+          margin-top: 10px;
+          color: #000; // Black text for answers
+        }
+      }
+    }
+
+    .contact-section {
+      width: 100%; // Full width for the contact section
+      background-color: #ffffff; // White background for the form
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+      .section-title {
+        font-size: 1.25rem; // Smaller font size for the title
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #343a40;
+      }
+
+      .contact-form {
+        .form-group {
+          margin-bottom: 10px; // Reduce spacing between form fields
+
+          label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #343a40;
+            font-size: 0.875rem; // Smaller font size for labels
+          }
+
+          .form-control {
+            border-radius: 4px;
+            border: 1px solid #e9ecef;
+            padding: 6px; // Reduce padding inside input fields
+            width: 100%;
+            font-size: 0.875rem; // Smaller font size for input fields
+
+            &:focus {
+              border-color: #018abe;
+              box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            }
+          }
+
+          textarea {
+            resize: vertical;
+            min-height: 80px; // Reduce the height of the textarea
+          }
+        }
+
+        .btn-primary {
+          background-color:  #018abe;
+          border: none;
+          border-radius: 4px;
+          padding: 8px 16px; // Reduce padding for the button
+          font-size: 0.875rem; // Smaller font size for the button
+          font-weight: bold;
+          cursor: pointer;
+          width: 100%;
+
+          &:hover {
+            background-color: #02457a;
+          }
+        }
+      }
+    }
+  }
+}

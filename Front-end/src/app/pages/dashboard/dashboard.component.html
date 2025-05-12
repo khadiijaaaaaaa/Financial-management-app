@@ -1,0 +1,243 @@
+<div class="header bg-white pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Summary Metrics -->
+      <div class="row">
+        <div class="col-xl-4 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Current Balance</h5>
+                  <div class="d-flex align-items-center">
+                    <span class="h2 font-weight-bold mb-0" style="color: #018ABE">{{ currentBalance | currency:'MAD ':'symbol':'1.2-2' }}</span>
+                  </div>
+                  <div class="mt-1"> <!-- Add margin-top to separate icons from the amount -->
+                    <i class="fas fa-file-export text-muted cursor-pointer"></i>
+                    <i class="fas fa-eye text-muted cursor-pointer ml-2" (click)="navigateToTable()"></i>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-success text-white rounded-circle shadow">
+                    <i class="fas fa-wallet"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Expenses</h5>
+                  <div class="d-flex align-items-center">
+                    <span class="h2 font-weight-bold mb-0 text-danger">{{ totalExpenses | currency:'MAD ':'symbol':'1.2-2' }}</span>
+                  </div>
+                  <div class="mt-1"> <!-- Add margin-top to separate icons from the amount -->
+                    <i class="fas fa-file-export text-muted cursor-pointer" (click)="exportExpenseTableAsPDF()"></i>
+                    <i class="fas fa-eye text-muted cursor-pointer ml-2" (click)="navigateToExpenseTable()"></i>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                    <i class="fas fa-chart-line"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Income</h5>
+                  <div class="d-flex align-items-center">
+                    <span class="h2 font-weight-bold mb-0 text-success">{{ totalIncome | currency:'MAD ':'symbol':'1.2-2' }}</span>
+                  </div>
+                  <div class="mt-1"> <!-- Add margin-top to separate icons from the amount -->
+                    <i class="fas fa-file-export text-muted cursor-pointer"></i>
+                    <i class="fas fa-eye text-muted cursor-pointer ml-2" (click)="navigateToIncomeTable()"></i>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                    <i class="fas fa-coins"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--7" style="background-color: white;">
+  <div class="row" id="overview">
+    <!-- Overview Graph -->
+    <div class="col-xl-8 mb-5 mb-xl-0">
+      <div class="card bg-white">
+        <div class="card-header bg-transparent">
+          <div class="row align-items-center">
+            <div class="col">
+              <h4 class="text-uppercase ls-1 mb-1" style="color: #001B48;">Overview Graph</h4>
+            </div>
+            <div class="col">
+              <div class="d-flex align-items-center justify-content-end">
+                <!-- Rectangle for Income, Expenses, Both -->
+                <div class="filter-rectangle d-flex align-items-center p-2 rounded mr-2" style="background-color: #D6E8EE;">
+                  <a class="text-gray mx-2" [ngClass]="{'active': activeFilter === 'income'}" (click)="setFilter('income')">
+                    <i class="fas fa-arrow-up"></i> <!-- Income icon -->
+                  </a>
+                  <a class="text-gray mx-2" [ngClass]="{'active': activeFilter === 'expenses'}" (click)="setFilter('expenses')">
+                    <i class="fas fa-arrow-down"></i> <!-- Expenses icon -->
+                  </a>
+                  <a class="text-gray mx-2" [ngClass]="{'active': activeFilter === 'both'}" (click)="setFilter('both')">
+                    <span>Both</span> <!-- Both text -->
+                  </a>
+                </div>
+                <!-- Rectangle for D, W, M -->
+                <div class="filter-rectangle d-flex align-items-center p-2 rounded" style="background-color: #D6E8EE;">
+                  <a class="text-gray mx-2" [ngClass]="{'active': timeFilter === 'day'}" (click)="setTimeFilter('day')">
+                    <span>D</span> <!-- Day -->
+                  </a>
+                  <a class="text-gray mx-2" [ngClass]="{'active': timeFilter === 'week'}" (click)="setTimeFilter('week')">
+                    <span>W</span> <!-- Week -->
+                  </a>
+                  <a class="text-gray mx-2" [ngClass]="{'active': timeFilter === 'month'}" (click)="setTimeFilter('month')">
+                    <span>M</span> <!-- Month -->
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <canvas id="chart-financial-activity"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spending Breakdown Pie Chart -->
+<div class="col-xl-4" id="spending-breakdown">
+  <div class="card bg-white">
+    <div class="card-header bg-transparent">
+      <h4 class="text-uppercase ls-1 mb-1" style="color: #001B48;">Spending Breakdown</h4>
+    </div>
+    <div class="card-body">
+      <!-- Dynamic text inside the ring -->
+      <div class="text-center position-relative">
+        <div id="pie-chart-text" class="position-absolute" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+          <h2 class="text-dark mb-0" id="pie-chart-percentage" style="font-size: 0.8rem;">{{ topCategories[0]?.percentage || '0%' }}</h2>
+          <p class="text-muted mb-0" id="pie-chart-label" style="font-size: 1rem;">{{ topCategories[0]?.category || 'No Data' }}</p>
+        </div>
+        <canvas id="chart-pie"></canvas>
+      </div>
+      <div class="mt-4">
+        <!-- Dynamically display top 5 categories -->
+        <div *ngFor="let category of topCategories" class="d-flex justify-content-between mb-2">
+          <span class="text-muted">{{ category.category }}</span>
+          <span class="text-dark">{{ category.amount | currency:'MAD ':'symbol':'1.2-2' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+  </div>
+
+  <!-- Recent Transactions and Quick Transaction Form -->
+  <div class="row mt-5">
+    <!-- Recent Transactions Section -->
+<div class="col-xl-8 mb-5 mb-xl-0" id="recent-transactions">
+  <div class="card bg-white">
+    <div class="card-header bg-transparent">
+      <h4 class="text-uppercase ls-1 mb-1" style="color: #001B48;">Recent Transactions</h4>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive"> <!-- wrapper -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Amount</th>
+              <th *ngIf="!isCollapsed">Date and Time</th> <!-- Hide Date and Time column when collapsed -->
+              <th>Type</th>
+              <th *ngIf="!isCollapsed">Actions</th> <!-- Hide Actions column when collapsed -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let transaction of transactions">
+              <td data-label="Category">{{ transaction.category }}</td>
+              <td data-label="Amount">{{ transaction.amount | currency:'MAD ':'symbol':'1.2-2' }}</td>
+              <td *ngIf="!isCollapsed" data-label="Date and Time">{{ transaction.date_time | date: 'medium' }}</td>
+              <td data-label="Type">
+                <span [ngClass]="{'text-danger': transaction.type === 'Expense', 'text-success': transaction.type === 'Income'}">
+                  {{ transaction.type }}
+                </span>
+              </td>
+              <td *ngIf="!isCollapsed" data-label="Actions"> <!-- Hide Actions column when collapsed -->
+                <button class="btn btn-sm btn-primary" (click)="editTransaction(transaction)" style="background-color: #018abe; border-color: #018abe;">
+                  Edit
+                </button>
+                <button class="btn btn-sm btn-danger" (click)="deleteTransaction(transaction)" style="background-color: #02457a; border-color: #02457a;">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="col-xl-4" id="quick-transaction" style="margin-top: -23px;">
+      <div class="card bg-white mt-4">
+        <div class="card-header bg-transparent">
+          <h4 class="text-uppercase ls-1 mb-1" style="color: #001B48;">Quick Transaction</h4>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmitQuickTransaction()">
+            <div class="form-group">
+              <label class="text-dark">Category</label>
+              <select class="form-control" [(ngModel)]="quickTransaction.category" name="category" required>
+                <option>Food</option>
+                <option>Gym</option>
+                <option>Pet</option>
+                <option>Clothes</option>
+                <option>Salary</option>
+                <option>Freelance</option>
+                <option>Rental Income</option>
+                <option>Bonus</option>
+                <option>Groceries</option>
+                <option>Restaurant</option>
+                <option>Transport</option>
+                <option>Health</option>
+                <option>Taxes</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="text-dark">Amount</label>
+              <input type="number" class="form-control" placeholder="Amount in MAD" [(ngModel)]="quickTransaction.amount" name="amount" required>
+            </div>
+            <div class="form-group">
+              <label class="text-dark">Type</label>
+              <select class="form-control" [(ngModel)]="quickTransaction.type" name="type" required>
+                <option value="Expense">Expense</option>
+                <option value="Income">Income</option>
+              </select>
+            </div>
+            <div class="text-center">
+            <button type="submit" class="btn btn-primary" style="background-color: #018abe; border-color: #018abe;">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

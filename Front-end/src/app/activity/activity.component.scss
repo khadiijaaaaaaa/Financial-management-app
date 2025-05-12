@@ -1,0 +1,137 @@
+.header {
+  padding: 20px;
+
+  .card-header {
+    border-bottom: 1px solid #e9ecef;
+    padding: 1rem;
+  }
+
+  .search-bar {
+    position: relative;
+    width: 300px;
+
+    .form-control {
+      padding-left: 40px;
+      border-radius: 20px;
+      border: 1px solid #e9ecef;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #97cadb;
+    }
+  }
+
+  .btn-filter {
+    background-color:#97cadb; // Dark gray
+    color: white;
+    border-radius: 20px;
+    padding: 8px 16px;
+    border: none;
+
+    &:hover {
+      background-color: #02457a; // Darker gray
+    }
+  }
+
+  .filters-section {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f8f9fa; // Light gray
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .form-control {
+      border-radius: 20px;
+      border: 1px solid #e9ecef;
+    }
+  }
+
+  .results-text {
+    font-size: 0.875rem; // Match the font size of <h6>
+    font-weight: 600; // Match the font weight of <h6>
+    color: #343a40; // Match the text color of <h6>
+    text-transform: uppercase; // Match the uppercase style
+    letter-spacing: 0.05em; // Match the letter-spacing (ls-1)
+    white-space: nowrap; // Ensure text appears in one line
+    margin-left: 10px; // Add some spacing between elements
+  }
+
+  .btn-reset {
+    background-color: #97cadb; // Gray
+    color: white;
+    border-radius: 20px;
+    padding: 8px 16px;
+    border: none;
+
+    &:hover {
+      background-color: #02457a;
+    }
+  }
+
+  .table-header {
+    background-color: #d6e8ee;
+    cursor: pointer;
+
+  }
+
+  .btn-options {
+    background: none;
+    border: none;
+    color: #6c757d;
+
+    &:hover {
+      color: #343a40;
+    }
+  }
+
+  .dropdown-menu {
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    .dropdown-item {
+      font-size: 0.875rem;
+      padding: 0.5rem 1rem;
+
+      &:hover {
+        background-color: #f8f9fa;
+      }
+    }
+  }
+
+  .pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+
+    &.flex-column {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    button {
+      background-color: #97cadb;
+      border: 1px solid #02457a; // Dark gray
+      color: #02457a; // Dark gray
+      border-radius: 20px;
+      padding: 8px 16px;
+
+      &:hover {
+        background-color: #02457a; // Dark gray
+        color: white;
+      }
+
+      &:disabled {
+        background-color: #97cadb; // Light gray
+        border-color: #97cadb;
+        color: #02457a; // Gray
+        cursor: not-allowed;
+      }
+    }
+  }
+}

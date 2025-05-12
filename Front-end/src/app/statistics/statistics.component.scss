@@ -1,0 +1,50 @@
+/* Light gray background for the rectangles */
+.bg-light-gray {
+    background-color: #f8f9fa; /* Light gray color */
+  }
+  
+  /* Styling for the filter rectangles */
+  .filter-rectangle {
+    border: 1px solid #e9ecef; /* Light border */
+  }
+  
+  /* Styling for the links inside the rectangles */
+  .filter-rectangle a {
+    text-decoration: none; /* Remove underline */
+    color: #6c757d; /* Gray text color */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  /* Active state for Income, Expenses, Both, D, M, Y */
+  .filter-rectangle a.active {
+    font-weight: bold; /* Bold text for active state */
+    color: skyblue; /* Darker text for active state */
+  }
+  
+  /* Make the icons (up and down arrows) bold and colored when active */
+  .filter-rectangle a.active i.fa-arrow-up {
+    font-weight: bold; /* Bold icons for active state */
+    color: #28a745; /* Green color for Income icon */
+  }
+  
+  .filter-rectangle a.active i.fa-arrow-down {
+    font-weight: bold; /* Bold icons for active state */
+    color: #dc3545; /* Red color for Expenses icon */
+  }
+  
+  /* Ensure the rectangles and their contents stay in one line */
+  .d-flex {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Add spacing between the rectangles */
+  .mr-2 {
+    margin-right: 0.5rem;
+  }
+  
+  /* Add spacing between the items inside the rectangles */
+  .mx-2 {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }

@@ -1,0 +1,34 @@
+<div class="header bg-white pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+    <h1>My Notes</h1>
+    <div class="add-note">
+      <textarea
+        [(ngModel)]="newNoteContent"
+        placeholder="Write a new note..."
+        rows="3"
+      ></textarea>
+      <button (click)="addNote()" class="add-button">Add Note</button>
+    </div>
+    <div class="notes-grid">
+      <div *ngFor="let note of notes" class="note-card">
+        <div *ngIf="editNoteId !== note.id; else editMode">
+          <p>{{ note.content }}</p>
+          <div class="note-actions">
+            <button (click)="startEditNote(note)" class="edit-button">Edit</button>
+            <button (click)="deleteNote(note.id)" class="delete-button">Delete</button>
+          </div>
+        </div>
+        <ng-template #editMode>
+          <textarea
+            [(ngModel)]="editedNoteContent"
+            rows="3"
+          ></textarea>
+          <div class="note-actions">
+            <button (click)="saveEditedNote()" class="save-button">Save</button>
+            <button (click)="cancelEdit()" class="cancel-button">Cancel</button>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,100,300,700');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+.ftco-section {
+  padding: 7em 0;
+  background: white;
+}
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.heading-section {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.wrapper {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.contact-wrap {
+  background: #fff;
+  padding: 2rem;
+}
+
+.info-wrap {
+  background: #97cadb;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 10px 0 0 10px;
+}
+
+.info-wrap h3 {
+  color: #fff;
+}
+
+.info-wrap .dbox {
+  margin-bottom: 1.5rem;
+}
+
+.info-wrap .icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-wrap .icon span {
+  color: #fff;
+}
+
+.info-wrap .text p {
+  margin: 0;
+}
+
+.info-wrap .text p span {
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #333;
+}
+
+.form-control {
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+textarea.form-control {
+  height: auto;
+}
+
+.btn-primary {
+  background: #97cadb;
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #97cadb;
+}
+
+.btn-primary:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+#form-message-warning,
+#form-message-success {
+  display: none;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 5px;
+}
+
+#form-message-warning {
+  background: #ffc107;
+  color: #333;
+}
+
+#form-message-success {
+  background: #28a745;
+  color: #fff;
+}

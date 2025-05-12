@@ -1,0 +1,83 @@
+<div class="header bg-white pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <!-- Upper Half: Line Chart -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card bg-white">
+          <div class="card-header bg-transparent">
+            <div class="row align-items-center">
+              <div class="col">
+                <h4 class="text-uppercase ls-1 mb-1" style="color: #001B48;">Overview Graph</h4>
+              </div>
+              <div class="col">
+                <div class="d-flex align-items-center justify-content-end">
+                  <!-- Rectangle for Income, Expenses, Both -->
+                  <div class="filter-rectangle d-flex align-items-center p-2 rounded mr-2"  style="background-color: #D6E8EE;">
+                    <a class="text-gray mx-2" [ngClass]="{'active': activeFilter === 'income'}" (click)="setFilter('income')">
+                      <i class="fas fa-arrow-up"></i> <!-- Income icon -->
+                    </a>
+                    <a class="text-gray mx-2" [ngClass]="{'active': activeFilter === 'expenses'}" (click)="setFilter('expenses')">
+                      <i class="fas fa-arrow-down"></i> <!-- Expenses icon -->
+                    </a>
+                    <a class="text-gray mx-2" [ngClass]="{'active': activeFilter === 'both'}" (click)="setFilter('both')">
+                      <span>Both</span> <!-- Both text -->
+                    </a>
+                  </div>
+                  <!-- Rectangle for D, W, M -->
+                  <div class="filter-rectangle bg-light-gray d-flex align-items-center p-2 rounded"  style="background-color: #D6E8EE;">
+                    <a class="text-gray mx-2" [ngClass]="{'active': timeFilter === 'day'}" (click)="setTimeFilter('day')">
+                      <span>D</span> <!-- Day -->
+                    </a>
+                    <a class="text-gray mx-2" [ngClass]="{'active': timeFilter === 'week'}" (click)="setTimeFilter('week')">
+                      <span>W</span> <!-- Week -->
+                    </a>
+                    <a class="text-gray mx-2" [ngClass]="{'active': timeFilter === 'month'}" (click)="setTimeFilter('month')">
+                      <span>M</span> <!-- Month -->
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <canvas id="chart-line"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lower Half: Pie Chart and Horizontal Bar Chart -->
+    <div class="row mt-4">
+      <!-- Left Side: Pie Chart -->
+      <div class="col-xl-6">
+        <div class="card bg-white">
+          <div class="card-header bg-transparent">
+            <h4 class="text-uppercase text-dark ls-1 mb-1" style="color: #001B48;">Spending Breakdown</h4>
+          </div>
+          <div class="card-body">
+            <!-- Dynamic text inside the ring -->
+            <div class="text-center position-relative">
+              <div id="pie-chart-text" class="position-absolute" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                <h2 class="text-dark mb-0" id="pie-chart-percentage" style="font-size: 0.8rem;">{{ topCategories[0]?.percentage || '0%' }}</h2>
+                <p class="text-muted mb-0" id="pie-chart-label" style="font-size: 1rem;">{{ topCategories[0]?.category || 'No Data' }}</p>
+              </div>
+              <canvas id="chart-pie"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side: Horizontal Bar Chart -->
+      <div class="col-xl-6">
+        <div class="card bg-white">
+          <div class="card-header bg-transparent">
+            <h4 class="text-uppercase text-dark ls-1 mb-1" style="color: #001B48;">Expense Distribution</h4>
+          </div>
+          <div class="card-body">
+            <canvas id="chart-bar-horizontal"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

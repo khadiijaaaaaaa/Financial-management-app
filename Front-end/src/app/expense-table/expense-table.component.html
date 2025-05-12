@@ -1,0 +1,55 @@
+<div class="header bg-white pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+    <div class="card-header bg-transparent">
+      <h5 class="text-uppercase text-dark ls-1 mb-0">Expense Transactions</h5>
+    </div>
+  
+    <!-- Transactions Table -->
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>Date and Time</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let transaction of filteredTransactions | slice: (currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
+              <td>{{ transaction.category }}</td>
+              <td>{{ transaction.amount | currency:'MAD ':'symbol':'1.2-2' }}</td>
+              <td>{{ formatDateTime(transaction.date_time) }}</td>
+              <td>
+                <span class="text-danger">{{ transaction.type }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <!-- Pagination and Items Per Page -->
+      <div class="d-flex justify-content-between align-items-center mt-4">
+        <!-- Items Per Page Selector and Results Text -->
+        <div class="d-flex align-items-center">
+          <select id="itemsPerPage" class="form-control items-per-page" [(ngModel)]="itemsPerPage" (change)="applyPagination()">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+          <div class="results-text ms-3 text-uppercase text-dark ls-1">
+            Results {{ getDisplayedRange() }} of {{ filteredTransactions.length }}
+          </div>
+        </div>
+  
+        <!-- Pagination Controls -->
+        <div class="pagination-controls">
+          <button class="btn btn-outline-primary" [disabled]="currentPage === 1" (click)="previousPage()">← Previous</button>
+          <span class="mx-2">Page {{ currentPage }} of {{ totalPages }}</span>
+          <button class="btn btn-outline-primary" [disabled]="currentPage === totalPages" (click)="nextPage()">Next →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

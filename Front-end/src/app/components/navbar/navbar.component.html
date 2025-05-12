@@ -1,0 +1,85 @@
+<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+  <div class="container-fluid">
+    <!-- Brand -->
+    <a class="h1 mb-0 text-uppercase d-none d-lg-inline-block" routerLinkActive="active" [routerLink]="['/dashboard']" style="color: #02457A;">
+      {{getTitle()}}
+    </a>
+    
+    <!-- Icons -->
+    <ul class="navbar-nav align-items-center d-none d-md-flex">
+      <!-- Insertion Field (Search Bar) -->
+      <li class="nav-item">
+        <div class="insertion-field">
+          <input
+            type="text"
+            placeholder="Enter your monthly expenses limit"
+            (input)="onInputChange($event)"
+          />
+          <button *ngIf="inputValue" class="btn-enter" (click)="onEnterClick()">Enter</button>
+        </div>
+      </li>
+
+      <!-- Notifications Dropdown -->
+      <li class="nav-item" ngbDropdown placement="bottom-right" (openChange)="onDropdownToggle($event)">
+        <a class="nav-link nav-link-icon" role="button" ngbDropdownToggle>
+          <i class="ni ni-bell-55" style="color: #97CADB;"></i>
+          <!-- Show a badge if there are unviewed notifications -->
+          <span *ngIf="getUnviewedNotificationsCount() > 0" class="badge badge-danger badge-pill">
+            {{ getUnviewedNotificationsCount() }}
+          </span>
+        </a>
+        <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
+          <!-- Display notifications -->
+          <a *ngFor="let notification of notifications" class="dropdown-item" href="javascript:void(0)">
+            {{ notification.message }}
+          </a>
+          <!-- Show a message if there are no notifications -->
+          <div *ngIf="notifications.length === 0" class="dropdown-item">No new notifications</div>
+        </div>
+      </li>
+
+     
+
+      <!-- User Dropdown -->
+      <li class="nav-item" ngbDropdown placement="bottom-right">
+        <a class="nav-link pr-0" role="button" ngbDropdownToggle>
+          <div class="media align-items-center">
+            <span class="avatar avatar-sm rounded-circle">
+              <img alt="Image placeholder" src="assets/img/theme/team-4-800x800.jfif">
+            </span>
+            <div class="media-body ml-2 d-none d-lg-block">
+              <span class="mb-0 text-sm font-weight-bold" style="color: #97CADB;">{{ user.name || 'Loading...' }}</span>
+              <span class="mb-0 text-sm" style="color: #97CADB; display: block;">{{ user.email || '' }}</span>
+            </div>
+          </div>
+        </a>
+        <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
+          <div class="dropdown-header noti-title">
+            <h6 class="text-overflow m-0">Welcome!</h6>
+          </div>
+          <a routerLinkActive="active" [routerLink]="['/settings']" class="dropdown-item">
+            <i class="ni ni-single-02"></i>
+            <span>My profile</span>
+          </a>
+          <a routerLinkActive="active" [routerLink]="['/support']" class="dropdown-item">
+            <i class="ni ni-support-16"></i>
+            <span>Support</span>
+          </a>
+          <a routerLinkActive="active" [routerLink]="['/notes']" class="dropdown-item">
+            <i class="ni ni-single-copy-04"></i>
+            <span>Notes</span>
+          </a>
+          <a routerLinkActive="active" [routerLink]="['/advice']" class="dropdown-item">
+            <i class="ni ni-bulb-61"></i>
+            <span>Advice</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="logout()">
+            <i class="ni ni-user-run"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

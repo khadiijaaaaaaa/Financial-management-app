@@ -1,0 +1,14 @@
+.dark-theme {
+  background-color: #121212;
+  color: #ffffff;
+
+  .navbar, .sidebar, .card {
+    background-color: #1e1e1e;
+    color: #ffffff;
+  }
+
+  .dropdown-menu {
+    background-color: #1e1e1e;
+    color: #ffffff;
+  }
+}

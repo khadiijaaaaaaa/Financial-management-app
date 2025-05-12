@@ -1,0 +1,79 @@
+.notes-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    color: #333;
+    text-align: center;
+  }
+  
+  .add-note {
+    margin-bottom: 20px;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .add-button {
+    background-color: #97cadb;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .note-card {
+    background-color: #d6e8ee;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .note-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  button {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .edit-button {
+    background-color: #018abe;
+    color: black;
+  }
+  
+  .delete-button {
+    background-color: #02457a;
+    color: white;
+  }
+  
+  .save-button {
+    background-color: #97cadb;
+    color: white;
+  }
+  
+  .cancel-button {
+    background-color: #ccc;
+    color: black;
+  }

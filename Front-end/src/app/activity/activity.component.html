@@ -1,0 +1,131 @@
+<div class="header bg-white pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <!-- Card Header with Search Bar and Filters Button -->
+    <div class="card bg-white">
+      <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+        <!-- Recent Transactions Title -->
+        <h5 class="text-uppercase text-dark ls-1 mb-0">Transactions</h5>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+          <input type="text" class="form-control" placeholder="Search transactions..." [(ngModel)]="searchText" (input)="applyFilters()">
+          <i class="fas fa-search search-icon"></i>
+        </div>
+
+        <!-- Filters Button -->
+        <button class="btn btn-filter" (click)="toggleFilters()">
+          <i class="fas fa-filter"></i> Filters
+        </button>
+      </div>
+
+      <!-- Filters Section (Hidden by Default) -->
+      <div class="filters-section" *ngIf="showFilters">
+        <div class="row mb-4">
+          <div class="col-md-3">
+            <label for="categoryFilter">Category</label>
+            <select id="categoryFilter" class="form-control" [(ngModel)]="selectedCategory" (change)="applyFilters()">
+              <option value="">All Categories</option>
+              <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label for="dateOrderFilter">Date Order</label>
+            <select id="dateOrderFilter" class="form-control" [(ngModel)]="selectedDateOrder" (change)="applyFilters()">
+              <option value="latest">Latest</option>
+              <option value="oldest">Oldest</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label for="amountMin">Amount Min</label>
+            <input type="number" id="amountMin" class="form-control" [(ngModel)]="amountMin" (change)="applyFilters()">
+          </div>
+          <div class="col-md-3">
+            <label for="amountMax">Amount Max</label>
+            <input type="number" id="amountMax" class="form-control" [(ngModel)]="amountMax" (change)="applyFilters()">
+          </div>
+        </div>
+
+        <!-- Reset Filters Button -->
+        <div class="row mb-4">
+          <div class="col-md-12 text-end">
+            <button class="btn btn-reset" (click)="resetFilters()">
+              <i class="fas fa-sync"></i> Reset Filters
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transactions Table -->
+      <div class="card-body">
+        <div class="table-responsive"> 
+        <table class="table">
+          <thead>
+            <tr>
+              <th (click)="sortTransactions('category')" class="table-header">Category</th>
+              <th (click)="sortTransactions('amount')" class="table-header">Amount</th>
+              <th *ngIf="!isCollapsed" (click)="sortTransactions('date_time')" class="table-header">Date and Time</th>
+              <th (click)="sortTransactions('type')" class="table-header">Type</th>
+              <th *ngIf="!isCollapsed" class="table-header">Actions</th> <!-- Hide Actions column when collapsed -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let transaction of filteredTransactions | slice: (currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
+              <td>{{ transaction.category }}</td>
+              <td data-label="Amount">{{ transaction.amount | currency:'MAD ':'symbol':'1.2-2' }}</td>
+              <td *ngIf="!isCollapsed">{{ formatDateTime(transaction.date_time) }}</td>
+              <td>
+                <span [ngClass]="{'text-danger': transaction.type === 'Expense', 'text-success': transaction.type === 'Income'}">
+                  {{ transaction.type }}
+                </span>
+              </td>
+              <td *ngIf="!isCollapsed">
+                <div *ngIf="isCollapsed; else fullActions">
+                  <div class="dropdown">
+                    <button class="btn btn-sm btn-options" data-bs-toggle="dropdown">
+                      <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <button (click)="editTransaction(transaction)" style="background-color: #018abe; border-color: #018abe;">Edit</button>
+                      </li>
+                      <li>
+                        <button (click)="deleteTransaction(transaction)" style="background-color: #02457a; border-color: #02457a;">Delete</button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <ng-template #fullActions>
+                  <button class="btn btn-sm btn-primary" (click)="editTransaction(transaction)"  style="background-color: #018abe; border-color: #018abe;">Edit</button>
+                  <button class="btn btn-sm btn-danger" (click)="deleteTransaction(transaction)" style="background-color: #02457a; border-color: #02457a;">Delete</button>
+                </ng-template>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+
+        <!-- Pagination and Items Per Page -->
+        <div class="d-flex justify-content-between align-items-center mt-4">
+          <!-- Items Per Page Selector and Results Text -->
+          <div class="d-flex align-items-center">
+            <select id="itemsPerPage" class="form-control items-per-page" [(ngModel)]="itemsPerPage" (change)="applyFilters()">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+            </select>
+            <div class="results-text ms-3 text-uppercase text-dark ls-1">
+              Results {{ getDisplayedRange() }} of {{ filteredTransactions.length }}
+            </div>
+          </div>
+
+          <!-- Pagination Controls -->
+          <div class="pagination-controls" [ngClass]="{'flex-column': isCollapsed}">
+            <button class="btn btn-outline-primary" [disabled]="currentPage === 1" (click)="previousPage()">← Previous</button>
+            <span class="mx-2">Page {{ currentPage }} of {{ totalPages }}</span>
+            <button class="btn btn-outline-primary" [disabled]="currentPage === totalPages" (click)="nextPage()">Next →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

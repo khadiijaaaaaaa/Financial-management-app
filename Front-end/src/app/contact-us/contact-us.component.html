@@ -1,0 +1,97 @@
+<div class="header bg-white pb-8 pt-5 pt-md-8">
+        <div class="container bg-white">
+          <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+              <h2 class="heading-section">Contact Us</h2>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <div class="wrapper">
+                <div class="row no-gutters">
+                  <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+                    <div class="contact-wrap w-100 p-md-5 p-4">
+                      <h3 class="mb-4">Get in touch</h3>
+                      <div id="form-message-warning" class="mb-4"></div>
+                      <div id="form-message-success" class="mb-4">
+                        Your message was sent, thank you!
+                      </div>
+                      <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="label" for="name">Full Name</label>
+                              <input type="text" class="form-control" id="name" name="name" ngModel required placeholder="Name">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="label" for="email">Email Address</label>
+                              <input type="email" class="form-control" id="email" name="email" ngModel required placeholder="Email">
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label class="label" for="subject">Subject</label>
+                              <input type="text" class="form-control" id="subject" name="subject" ngModel required placeholder="Subject">
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label class="label" for="message">Message</label>
+                              <textarea class="form-control" id="message" name="message" ngModel required cols="30" rows="4" placeholder="Message"></textarea>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">Send Message</button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-5 d-flex align-items-stretch">
+                    <div class="info-wrap w-100 p-md-5 p-4">
+                      <h3>Let's get in touch</h3>
+                      <p class="mb-4">We're open for any suggestion or just to have a chat</p>
+                      <div class="dbox w-100 d-flex align-items-start">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                          <span class="fa fa-map-marker"></span>
+                        </div>
+                        <div class="text pl-3">
+                          <p><span>Address:</span>123 Avenue Mohammed V, Suite 501 Casablanca 20000, Morocco</p>
+                        </div>
+                      </div>
+                      <div class="dbox w-100 d-flex align-items-center">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                          <span class="fa fa-phone"></span>
+                        </div>
+                        <div class="text pl-3">
+                          <p><span>Phone:</span> + 1235 2355 98</p>
+                        </div>
+                      </div>
+                      <div class="dbox w-100 d-flex align-items-center">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                          <span class="fa fa-paper-plane"></span>
+                        </div>
+                        <div class="text pl-3">
+                          <p><span>Email:</span> info@yoursite.com</p>
+                        </div>
+                      </div>
+                      <div class="dbox w-100 d-flex align-items-center">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                          <span class="fa fa-globe"></span>
+                        </div>
+                        <div class="text pl-3">
+                          <p><span>Website:</span> xxx.com</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>

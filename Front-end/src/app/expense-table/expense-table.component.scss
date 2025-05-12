@@ -1,0 +1,13 @@
+.table-responsive {
+    overflow-x: auto;
+  }
+  
+  .pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .items-per-page {
+    width: 80px;
+  }

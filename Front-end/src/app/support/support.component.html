@@ -1,0 +1,37 @@
+<div class="header bg-white pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <!-- Frequently Asked Questions Section -->
+    <div class="questions-section">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="question-card" *ngFor="let question of questions; let i = index" (click)="toggleAnswer(i)">
+        <div class="question-header">
+          <span class="question-text">{{ question.question }}</span>
+          <span class="toggle-icon">{{ question.isOpen ? '-' : '+' }}</span>
+        </div>
+        <div class="answer" *ngIf="question.isOpen">
+          {{ question.answer }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Form Section -->
+    <div class="contact-section">
+      <h2 class="section-title">Have more questions? Contact Us</h2>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" class="form-control" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" class="form-control" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" class="form-control" placeholder="Enter your message"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="navigateToContact()">Contact Us</button>
+      </form>
+    </div>
+  </div>
+</div>
